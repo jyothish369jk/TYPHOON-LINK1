@@ -1,6 +1,9 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 
@@ -50,7 +53,7 @@ app.include_router(sos_router, prefix="/api")
 app.include_router(tickets_router, prefix="/api")
 
 
-@app.get("/", tags=["General"])
+@app.get("/api/status", tags=["General"])
 def root_status():
     """Root metadata and system status."""
     return {
@@ -78,3 +81,15 @@ def health_check(db: Session = Depends(get_db)):
         database_connected=True,
         notice="[DEMONSTRATION PLATFORM] All seeded telemetry is simulated.",
     )
+
+
+# Mount Static Frontend Prototype Directory for Unified All-in-One Deployment
+frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../stitch_typhoon_link_sos"))
+
+if os.path.exists(frontend_dir):
+    @app.get("/", include_in_schema=False)
+    def root_redirect():
+        """Redirect root to the citizen emergency dispatcher prototype."""
+        return RedirectResponse(url="/citizen_offline_sos_dispatcher_simplified/code.html")
+
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="static")

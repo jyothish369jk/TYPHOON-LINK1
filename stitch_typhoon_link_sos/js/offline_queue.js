@@ -202,11 +202,26 @@ class OfflineQueueEngine {
   }
 
   /**
+   * Helper to resolve the correct backend API base URL
+   * Works on file://, localhost:5500, and cloud production domains seamlessly
+   */
+  _getApiBaseUrl() {
+    if (typeof window !== 'undefined' && window.location) {
+      if (window.location.protocol === 'file:' || window.location.port === '5500' || window.location.port === '3000') {
+        return 'http://localhost:8000';
+      }
+      return window.location.origin;
+    }
+    return 'http://localhost:8000';
+  }
+
+  /**
    * Flush pending reports to backend API (/api/sos/sync)
    */
-  async syncPendingReports(apiUrl = 'http://localhost:8000/api/sos/sync') {
+  async syncPendingReports(apiUrl = null) {
     if (this.isSyncing) return;
     this.isSyncing = true;
+    const targetUrl = apiUrl || `${this._getApiBaseUrl()}/api/sos/sync`;
 
     try {
       const pending = await this.getPendingReports();
@@ -216,7 +231,7 @@ class OfflineQueueEngine {
         return { synced: 0 };
       }
 
-      console.log(`[TyphoonLink Queue] Syncing ${pending.length} pending report(s) to ${apiUrl}...`);
+      console.log(`[TyphoonLink Queue] Syncing ${pending.length} pending report(s) to ${targetUrl}...`);
 
       // Prepare batch payload
       const payload = {

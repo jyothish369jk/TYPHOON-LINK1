@@ -434,13 +434,20 @@ Uprooted ancient banyan tree and 11kV electrical feeder line collapsed across ar
   }
 
   // Action Dispatch Interactivity with Live API Integration
+  function getApiBase() {
+    if (window.location.protocol === 'file:' || window.location.port === '5500' || window.location.port === '3000') {
+      return 'http://localhost:8000';
+    }
+    return window.location.origin;
+  }
+
   async function claimTask(btn, location, ticketId = 1) {
     const originalContent = btn.innerHTML;
     btn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span> CLAIMING...';
     btn.disabled = true;
 
     try {
-      const response = await fetch(`http://localhost:8000/api/tickets/${ticketId}/claim`, {
+      const response = await fetch(`${getApiBase()}/api/tickets/${ticketId}/claim`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -479,7 +486,7 @@ Uprooted ancient banyan tree and 11kV electrical feeder line collapsed across ar
 
   async function toggleEnRoute(btn, ticketId = 1) {
     try {
-      await fetch(`http://localhost:8000/api/tickets/${ticketId}/status`, {
+      await fetch(`${getApiBase()}/api/tickets/${ticketId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
