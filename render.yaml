@@ -3,8 +3,8 @@ services:
     name: typhoon-link
     runtime: python
     plan: free
-    buildCommand: pip install -r server/requirements.txt
-    startCommand: python -m uvicorn server.app.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONPATH
         value: server
