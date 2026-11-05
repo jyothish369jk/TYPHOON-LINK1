@@ -1,0 +1,52 @@
+# TyphoonLink Environment & Secrets
+.env
+.env.local
+*.env
+
+# SQLite Databases & Local Storage
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+server/database/*.db
+server/database/*.sqlite
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE & OS Specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Scratch files & Test Artifacts
+scratch/
+*.log
