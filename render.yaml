@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: typhoon-link
+    runtime: python
+    plan: free
+    buildCommand: pip install -r server/requirements.txt
+    startCommand: python -m uvicorn server.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONPATH
+        value: server
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: JWT_SECRET
+        value: typhoon-production-secret-jwt-key-369
+      - key: DATABASE_URL
+        value: sqlite:///./database/typhoon_server.db
