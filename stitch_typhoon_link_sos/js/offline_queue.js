@@ -207,9 +207,15 @@ class OfflineQueueEngine {
    */
   _getApiBaseUrl() {
     if (typeof window !== 'undefined' && window.location) {
+      // Local development via file:// or Live Server
       if (window.location.protocol === 'file:' || window.location.port === '5500' || window.location.port === '3000') {
         return 'http://localhost:8000';
       }
+      // Vercel deployment — frontend only, API lives on Render
+      if (window.location.hostname.includes('vercel.app')) {
+        return 'https://typhoon-link1.onrender.com';
+      }
+      // Render unified deployment — same origin serves both API and frontend
       return window.location.origin;
     }
     return 'http://localhost:8000';

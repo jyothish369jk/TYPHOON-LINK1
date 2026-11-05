@@ -438,6 +438,10 @@ Uprooted ancient banyan tree and 11kV electrical feeder line collapsed across ar
     if (window.location.protocol === 'file:' || window.location.port === '5500' || window.location.port === '3000') {
       return 'http://localhost:8000';
     }
+    // Vercel deployment — frontend only, API lives on Render
+    if (window.location.hostname.includes('vercel.app')) {
+      return 'https://typhoon-link1.onrender.com';
+    }
     return window.location.origin;
   }
 
