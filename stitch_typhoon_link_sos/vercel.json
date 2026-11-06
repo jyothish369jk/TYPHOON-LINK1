@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/citizen_offline_sos_dispatcher_simplified/code.html" },
+    { "source": "/api/:path*", "destination": "https://typhoon-link1.onrender.com/api/:path*" }
+  ]
+}

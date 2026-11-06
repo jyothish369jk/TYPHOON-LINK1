@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, FileResponse
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 
@@ -85,6 +85,12 @@ def health_check(db: Session = Depends(get_db)):
 
 # Mount Static Frontend Prototype Directory for Unified All-in-One Deployment
 frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../stitch_typhoon_link_sos"))
+
+favicon_path = os.path.join(frontend_dir, "favicon.ico")
+if os.path.exists(favicon_path):
+    @app.get("/favicon.ico", include_in_schema=False)
+    def favicon():
+        return FileResponse(favicon_path)
 
 if os.path.exists(frontend_dir):
     @app.get("/", include_in_schema=False)

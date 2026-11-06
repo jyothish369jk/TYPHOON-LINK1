@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=./citizen_offline_sos_dispatcher_simplified/code.html">
+  <title>TyphoonLink — Emergency Dispatch Portal</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: '#ef4444',
+            surface: '#0f172a',
+            panel: '#1e293b'
+          }
+        }
+      }
+    };
+    // Immediate redirect to primary Citizen SOS Dispatcher
+    if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
+      window.location.replace('./citizen_offline_sos_dispatcher_simplified/code.html');
+    }
+  </script>
+  <style>
+    body { background-color: #0b0f19; color: #f1f5f9; font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+  <div class="max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+    <div class="w-16 h-16 bg-red-600/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-red-500/30 animate-pulse">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    </div>
+    
+    <h1 class="text-2xl font-bold tracking-tight mb-2">TYPHOONLINK DISASTER RESPONSE</h1>
+    <p class="text-sm text-slate-400 mb-6">Redirecting to Emergency Citizen SOS Dispatcher...</p>
+
+    <div class="grid grid-cols-1 gap-3 text-left">
+      <a href="./citizen_offline_sos_dispatcher_simplified/code.html" class="p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl transition flex items-center justify-between group">
+        <div>
+          <div class="font-semibold text-red-400 group-hover:text-red-300">🚨 Citizen SOS Dispatcher</div>
+          <div class="text-xs text-slate-400">Offline-ready emergency beacon transmission</div>
+        </div>
+        <span class="text-slate-500 group-hover:translate-x-1 transition">→</span>
+      </a>
+
+      <a href="./volunteer_triage_deduplication_feed/code.html" class="p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl transition flex items-center justify-between group">
+        <div>
+          <div class="font-semibold text-blue-400 group-hover:text-blue-300">📋 Volunteer Triage Feed</div>
+          <div class="text-xs text-slate-400">Real-time incident triage and atomic claims</div>
+        </div>
+        <span class="text-slate-500 group-hover:translate-x-1 transition">→</span>
+      </a>
+
+      <a href="./hyper_local_cyclone_grid_resource_map/code.html" class="p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl transition flex items-center justify-between group">
+        <div>
+          <div class="font-semibold text-emerald-400 group-hover:text-emerald-300">🗺️ Cyclone Grid Resource Map</div>
+          <div class="text-xs text-slate-400">Shelter telemetry and inundation zones</div>
+        </div>
+        <span class="text-slate-500 group-hover:translate-x-1 transition">→</span>
+      </a>
+
+      <a href="./satellite_intelligence_disaster_mapping_mobile/code.html" class="p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl transition flex items-center justify-between group">
+        <div>
+          <div class="font-semibold text-amber-400 group-hover:text-amber-300">🛰️ Satellite Intelligence</div>
+          <div class="text-xs text-slate-400">Radar synthesis & optical flood telemetry</div>
+        </div>
+        <span class="text-slate-500 group-hover:translate-x-1 transition">→</span>
+      </a>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-500">
+      <span>TyphoonLink v1.0.0</span>
+      <a href="/docs" class="text-slate-400 hover:text-white underline">REST API Docs</a>
+    </div>
+  </div>
+</body>
+</html>

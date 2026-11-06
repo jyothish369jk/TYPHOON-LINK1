@@ -1,16 +1,7 @@
 {
   "version": 2,
-  "outputDirectory": "stitch_typhoon_link_sos",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/$1" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" }
-      ]
-    }
+    { "source": "/", "destination": "/stitch_typhoon_link_sos/citizen_offline_sos_dispatcher_simplified/code.html" },
+    { "source": "/api/:path*", "destination": "https://typhoon-link1.onrender.com/api/:path*" }
   ]
 }
